@@ -92,7 +92,7 @@ jobs:
           # Load used functions
           . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'pipelines' 'sharedScripts' 'Set-EnvironmentOnAgent.ps1')
 
-          $Env:PSModulePath += "/usr/share/az_7.3.2"
+          $Env:PSModulePath += ":/usr/share/az_7.3.2"
 
           # Define PS modules to install on the runner
           $Modules = @(
