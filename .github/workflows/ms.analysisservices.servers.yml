@@ -52,6 +52,8 @@ jobs:
             # Grouping task logs
             Write-Output "::group::Setup agent"
 
+            $stopwatch = [system.diagnostics.stopwatch]::StartNew()
+
             # Load used functions
             . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'pipelines' 'sharedScripts' 'Set-EnvironmentOnAgent.ps1')
 
@@ -64,6 +66,9 @@ jobs:
 
             # Set agent up
             Set-EnvironmentOnAgent -PSModules $Modules
+
+            Write-Verbose ($stopwatch.Elapsed | Out-String) -Verbose
+            $stopwatch.Stop()
 
             Write-Output "::endgroup::"
   # ###########################
