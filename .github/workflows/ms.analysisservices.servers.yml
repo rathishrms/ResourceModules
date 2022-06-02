@@ -83,7 +83,9 @@ jobs:
         shell: pwsh
         run: |
           # Grouping task logs
-          Write-Output "::group::Setup agent"
+          Write-Output "::group::Setup agent 2"
+
+          Import-Module PowerShellGet
 
           $stopwatch = [system.diagnostics.stopwatch]::StartNew()
 
