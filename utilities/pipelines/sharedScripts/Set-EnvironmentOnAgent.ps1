@@ -211,7 +211,7 @@ function Set-EnvironmentOnAgent {
         $count++
     }
 
-    $stopwatch.Elapsed
+    Write-Verbose ($stopwatch.Elapsed | Out-String) -Verbose
     $stopwatch.Stop()
 
     Write-Verbose ('Install-CustomModule end') -Verbose
