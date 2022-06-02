@@ -45,28 +45,30 @@ jobs:
         with:
           fetch-depth: 0
       - name: 'Setup agent'
-        shell: pwsh
-        run: |
-          # Grouping task logs
-          Write-Output "::group::Setup agent"
+        uses: azure/powershell@v1
+        with:
+          azPSVersion: 'latest'
+          inlineScript: |
+            # Grouping task logs
+            Write-Output "::group::Setup agent"
 
-          Write-Verbose "Get current modules" -Verbose
-          Write-Verbose ('{0}' -f (Get-Module -ListAvailable | Out-String)) -Verbose
+            Write-Verbose "Get current modules" -Verbose
+            Write-Verbose ('{0}' -f (Get-Module -ListAvailable | Out-String)) -Verbose
 
-          # Load used functions
-          . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'pipelines' 'sharedScripts' 'Set-EnvironmentOnAgent.ps1')
+            # Load used functions
+            . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'pipelines' 'sharedScripts' 'Set-EnvironmentOnAgent.ps1')
 
-          # Define PS modules to install on the runner
-          $Modules = @(
-              @{ Name = 'Az.Accounts' },
-              @{ Name = 'Az.ContainerRegistry' },
-              @{ Name = 'Az.Resources' }
-          )
+            # Define PS modules to install on the runner
+            $Modules = @(
+                @{ Name = 'Az.Accounts' },
+                @{ Name = 'Az.ContainerRegistry' },
+                @{ Name = 'Az.Resources' }
+            )
 
-          # Set agent up
-          Set-EnvironmentOnAgent -PSModules $Modules
+            # Set agent up
+            Set-EnvironmentOnAgent -PSModules $Modules
 
-          Write-Output "::endgroup::"
+            Write-Output "::endgroup::"
   # ###########################
   # #   Initialize pipeline   #
   # ###########################
