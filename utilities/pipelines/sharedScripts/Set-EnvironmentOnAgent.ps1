@@ -189,6 +189,8 @@ function Set-EnvironmentOnAgent {
     ##   Install PowerShell Modules   ##
     ####################################
 
+    $stopwatch = [system.diagnostics.stopwatch]::StartNew()
+
     $count = 1
     Write-Verbose ('Try installing:') -Verbose
     $modules | ForEach-Object {
@@ -208,5 +210,9 @@ function Set-EnvironmentOnAgent {
         $null = Install-CustomModule -Module $Module -InstalledModules $installedModules
         $count++
     }
+
+    $stopwatch.Elapsed
+    $stopwatch.Stop()
+
     Write-Verbose ('Install-CustomModule end') -Verbose
 }

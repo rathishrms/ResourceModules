@@ -52,9 +52,6 @@ jobs:
             # Grouping task logs
             Write-Output "::group::Setup agent"
 
-            Write-Verbose "Get current modules" -Verbose
-            Write-Verbose ('{0}' -f (Get-Module -ListAvailable | Out-String)) -Verbose
-
             # Load used functions
             . (Join-Path $env:GITHUB_WORKSPACE 'utilities' 'pipelines' 'sharedScripts' 'Set-EnvironmentOnAgent.ps1')
 
