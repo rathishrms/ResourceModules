@@ -59,6 +59,7 @@ jobs:
           subscriptionId: '${{ secrets.ARM_SUBSCRIPTION_ID }}'
           managementGroupId: '${{ secrets.ARM_MGMTGROUP_ID }}'
           removeDeployment: '${{ env.removeDeployment }}'
+  
   job_deploy_ppg:
     runs-on: ubuntu-20.04
     name: 'Deploy proximity placement group'
